@@ -2,13 +2,13 @@
 
 ## 使用
 
-从npm安装`adc-uploaders`
+从npm安装`ct-adc-uploaders`
 ```
-npm install adc-uploaders
+npm install ct-adc-uploaders
 ```
 在代码中引用
 ```
-import uploaders from 'adc-uploaders';
+import uploaders from 'ct-adc-uploaders';
 var Importer=uploaders.Importer;
 Vue.component(Importer.name,Importer);
 ```
