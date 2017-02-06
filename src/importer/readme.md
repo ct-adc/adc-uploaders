@@ -2,13 +2,13 @@
 
 ## 使用
 
-从npm安装`ct-adc-uploaders`
+从npm安装`adc-uploaders`
 ```
-npm install ct-adc-uploaders
+npm install adc-uploaders
 ```
 在代码中引用
 ```
-import uploaders from 'ct-adc-uploaders';
+import uploaders from 'adc-uploaders';
 var Importer=uploaders.Importer;
 Vue.component(Importer.name,Importer);
 ```
@@ -22,3 +22,7 @@ extensions | 可以接受的文件后缀，以‘,’隔开 如 jpg,png,gif | St
 fileSizeLimit | 可以接受的文件大小(单位为B) | Number | undefined
 isValid | 判断响应数据的状态是否正常 | Function | function(response){return response.Status;}
 formData | 随文件上传的参数 | Object | {}
+
+
+## 事件说明
+
