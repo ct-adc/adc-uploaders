@@ -30,6 +30,10 @@
                     return response.Status;
                 }
             },
+            message:{
+                type:String,
+                default:'Message'
+            },
             formData:{
                 type:Object,
                 default(){
@@ -64,7 +68,7 @@
                 if (that.isValid(response)) {
                     that.$emit('success', response);
                 } else {
-                    that.$emit('error', response);
+                    that.$emit('error', response[that.message]);
                 }
             });
             uploader.on('uploadError', function (file,code) {
