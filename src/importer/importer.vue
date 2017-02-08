@@ -61,20 +61,20 @@
                 },
                 fileSizeLimit:that.fileSizeLimit
             });
-            uploader.on('startUpload', function () {
+            that.uploader.on('startUpload', function () {
                 that.loading = true;
             });
-            uploader.on('uploadSuccess', function (file, response) {
+            that.uploader.on('uploadSuccess', function (file, response) {
                 if (that.isValid(response)) {
                     that.$emit('success', response);
                 } else {
                     that.$emit('error', response[that.message]);
                 }
             });
-            uploader.on('uploadError', function (file,code) {
+            that.uploader.on('uploadError', function (file,code) {
                 that.$emit('error','上传失败');
             });
-            uploader.on('error', function (code) {
+            that.uploader.on('error', function (code) {
                 var msg={
                     Q_EXCEED_NUM_LIMIT:'文件数量超出限制',
                     Q_EXCEED_SIZE_LIMIT:'文件总大小超出限制!',
@@ -82,9 +82,9 @@
                 };
                 that.$emit('error',msg[code]);
             });
-            uploader.on('uploadComplete', function () {
+            that.uploader.on('uploadComplete', function () {
                 that.loading = false;
-                uploader.reset();
+                that.uploader.reset();
             })
         },
         methods:{
