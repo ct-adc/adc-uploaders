@@ -48,7 +48,7 @@
         },
         mounted(){
             var that = this;
-            var uploader = WebUploader.create({
+            that.uploader = WebUploader.create({
                 pick: {
                     id: that.$refs.root
                 },
@@ -86,6 +86,11 @@
                 that.loading = false;
                 uploader.reset();
             })
+        },
+        methods:{
+            refresh(){
+                this.uploader.refresh();
+            }
         }
     }
 </script>
