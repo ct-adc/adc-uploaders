@@ -24,16 +24,6 @@
             fileSizeLimit:{
                 type:Number
             },
-            isValid:{
-                type:Function,
-                default(response){
-                    return response.Status;
-                }
-            },
-            message:{
-                type:String,
-                default:'Message'
-            },
             formData:{
                 type:Object,
                 default(){
@@ -65,11 +55,7 @@
                 that.loading = true;
             });
             that.uploader.on('uploadSuccess', function (file, response) {
-                if (that.isValid(response)) {
-                    that.$emit('success', response);
-                } else {
-                    that.$emit('error', response[that.message]);
-                }
+                that.$emit('success', response);
             });
             that.uploader.on('uploadError', function (file,code) {
                 that.$emit('error','上传失败');

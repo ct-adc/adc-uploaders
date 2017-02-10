@@ -20,8 +20,6 @@ buttonText | 按钮文字 | String | '导入文件'
 server | 上传接口地址 | String | ''
 extensions | 可以接受的文件后缀，以‘,’隔开 如 jpg,png,gif | String | ''
 fileSizeLimit | 可以接受的文件大小(单位为B) | Number | undefined
-isValid | 判断响应数据的状态是否正常 | Function | function(response){return response.Status;}
-message | 错误内容字段 | String | 'Message'
 formData | 随文件上传的参数 | Object | {}
 
 
@@ -35,5 +33,5 @@ formData | 随文件上传的参数 | Object | {}
 
 失败后的回调，参数为错误信息
 
-ps: 上传后的逻辑层面的失败也会触发error事件。
+ps: 上传后的逻辑层面的失败需要在外部处理。
 
