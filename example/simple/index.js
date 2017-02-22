@@ -8,8 +8,8 @@ new Vue({
     el: '#app',
     data: {
         formData: {},
-        fileSizeLimit:10,
-        server: '/api/Area/ImportAreas?os=1'
+        fileSizeLimit:1000000,
+        server: '/api/patch/uploadPatch'
     },
     components: {
         importer: uploaders.Importer
