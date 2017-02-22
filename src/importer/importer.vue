@@ -1,11 +1,7 @@
 <template>
-    <div>
         <span ref="root">
         <i class="glyphicon glyphicon-import"></i><span class="title">{{ buttonText }}</span>
     </span>
-        <button type="button" class="btn btn-default" @click="change">change</button>
-    </div>
-
 </template>
 
 <script type="es6">
