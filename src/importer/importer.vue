@@ -5,10 +5,10 @@
 </template>
 
 <script type="es6">
-    var errors={
-        Q_EXCEED_NUM_LIMIT:'文件数量超出限制',
-                Q_EXCEED_SIZE_LIMIT:'文件总大小超出限制!',
-            Q_TYPE_DENIED:'文件类型不正确!'
+    var errors = {
+        Q_EXCEED_NUM_LIMIT: '文件数量超出限制',
+        Q_EXCEED_SIZE_LIMIT: '文件总大小超出限制!',
+        Q_TYPE_DENIED: '文件类型不正确!'
     };
     export default {
         name: 'importer',
@@ -19,7 +19,7 @@
             },
             server: {
                 type: String,
-                default:''
+                default: ''
             },
             extensions: {
                 type: String,
