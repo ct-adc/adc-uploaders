@@ -8,7 +8,7 @@ new Vue({
     el: '#app',
     data: {
         formData: {},
-        fileSizeLimit:1000000,
+        fileSizeLimit:10,
         server: '/api/patch/uploadPatch'
     },
     components: {

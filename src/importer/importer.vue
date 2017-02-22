@@ -56,7 +56,7 @@
                 },
                 fileSizeLimit: that.fileSizeLimit
             });
-            that.uploader.on('startUpload', function () {
+            that.uploader.on('uploadStart', function () {
                 that.$emit('start');
                 that.loading = true;
             });
@@ -66,7 +66,6 @@
             });
 
             that.uploader.on('uploadError', function () {
-                that.loading = false;
                 that.$emit('error', '上传失败，请重试！');
             });
 
