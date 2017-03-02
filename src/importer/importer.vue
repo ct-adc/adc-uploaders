@@ -5,7 +5,8 @@
 </template>
 
 <script type="es6">
-    var errors = {
+    import utility from 'ct-utility';
+    var ERRORS = {
         Q_EXCEED_NUM_LIMIT: '文件数量超出限制',
         Q_EXCEED_SIZE_LIMIT: '文件总大小超出限制!',
         Q_TYPE_DENIED: '文件类型不正确!'
@@ -20,6 +21,10 @@
             server: {
                 type: String,
                 default: ''
+            },
+            method: {
+                type: String,
+                default: 'GET'
             },
             extensions: {
                 type: String,
@@ -42,20 +47,22 @@
         },
         mounted () {
             var that = this;
-
             that.uploader = WebUploader.create({
                 pick: {
                     id: that.$refs.root
                 },
                 auto: true,
-                formData: this.formData,
                 chunked: true,
                 server: that.server,
+                method: that.method,
                 accept: {
                     extensions: that.extensions
                 },
                 fileSizeLimit: that.fileSizeLimit
             });
+            that.uploader.on('uploadBeforeSend', function (object, data, headers) {
+                utility.base.extend(data, that.formData);
+            })
             that.uploader.on('uploadStart', function () {
                 that.$emit('start');
                 that.loading = true;
@@ -70,7 +77,7 @@
             });
 
             that.uploader.on('error', function (code) {
-                var msg = errors[code];
+                var msg = errors[code] || '上传失败，请重试！';
                 that.loading = false;
                 that.$emit('error', msg);
             });
@@ -93,6 +100,9 @@
                 } else {
                     $webuploaderPick.innerHTML = '<i class="glyphicon glyphicon-import"></i><span class="title">' + this.buttonText + '</span>';
                 }
+            },
+            server:function(server){
+                that.uploader.server=server;
             }
         }
     }
