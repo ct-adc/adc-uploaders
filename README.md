@@ -7,3 +7,7 @@
 导入文件组件
 
 [说明文档](https://github.com/ct-adc/adc-uploaders/tree/master/src/importer)
+
+## changeLog
+
+[changeLog](https://github.com/ct-adc/adc-uploaders/blob/dev/changelog.md)
