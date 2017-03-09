@@ -90,6 +90,10 @@
         methods: {
             refresh () {
                 this.uploader.refresh();
+            },
+            stop(){
+                this.loading=false;
+                this.uploader.stop(true);
             }
         },
         watch: {
