@@ -1,7 +1,7 @@
 {
   "name": "ct-adc-uploaders",
   "description": "vue components",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "ruby",
   "private": false,
   "scripts": {

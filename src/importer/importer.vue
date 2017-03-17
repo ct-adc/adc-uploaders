@@ -77,7 +77,7 @@
             });
 
             that.uploader.on('error', function (code) {
-                var msg = errors[code] || '上传失败，请重试！';
+                var msg = ERRORS[code] || '上传失败，请重试！';
                 that.loading = false;
                 that.$emit('error', msg);
             });
