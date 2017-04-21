@@ -4,7 +4,8 @@ var webpack = require('webpack');
 module.exports = {
   context: path.resolve(__dirname, "./example"),
   entry: {
-    simple:'./simple/index.js'
+    importer:'./importer/index.js',
+    imgUploader:'./imgUploader/index.js'
   },
   output: {
     path: path.resolve(__dirname, './asset'),
@@ -58,7 +59,7 @@ module.exports = {
     historyApiFallback: true,
     noInfo: true,
     proxy:{
-      '/api/': 'http://localhost:3000/'
+      '/NewApp/': 'http://localhost:3000/'
     }
   },
   performance: {
