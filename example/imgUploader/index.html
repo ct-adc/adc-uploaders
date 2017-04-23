@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>list</title>
+    <link href="http://static.tcy365.com/cdn/bootstrap/3.3.5/css/bootstrap.dz.min.css" rel="stylesheet">
+    <link href="http://static.tcy365.com/cdn/bootstrap/3.3.5/css/theme.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="../../src/imgUploader/style.css"/>-->
+</head>
+<body>
+<div id="uploader">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">上传图片</h3>
+        </div>
+        <div class="panel-body">
+            <img-uploader ref="imgUploader"
+                          :result-filter="resultFilter"
+                          @runtime-error="showError">
+            </img-uploader>
+        </div>
+        <div class="panel-footer clearfix">
+            <span class="text-danger">{{error}}</span>
+            <span class="pull-right">
+                <button type="button" class="btn btn-sm btn-primary" @click="getImgList">获取图片地址列表</button>
+            </span>
+        </div>
+    </div>
+
+
+</div>
+<script src="http://static.uc108.com/cdn/jquery/2.1.0/jquery.js"></script>
+<script src="http://static.uc108.com/cdn/webuploader/0.1.5/webuploader.html5only.js"></script>
+<script src="/asset/imgUploader.bundle.js"></script>
+</body>
+</html>

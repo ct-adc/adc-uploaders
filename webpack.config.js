@@ -4,7 +4,8 @@ var webpack = require('webpack');
 module.exports = {
   context: path.resolve(__dirname, "./example"),
   entry: {
-    simple:'./simple/index.js'
+    importer:'./importer/index.js',
+    imgUploader:'./imgUploader/index.js'
   },
   output: {
     path: path.resolve(__dirname, './asset'),
@@ -58,7 +59,7 @@ module.exports = {
     historyApiFallback: true,
     noInfo: true,
     proxy:{
-      '/api/': 'http://localhost:3000/'
+      '/NewApp/': 'http://localhost:3000/'
     }
   },
   performance: {
@@ -69,7 +70,6 @@ module.exports = {
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map';
-  // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
