@@ -1,14 +1,15 @@
 <template>
-    <ul class="filelist">
+    <ul class="filelist" ref="root">
         <li v-for="(thumb,index) in thumbs">
             <img :src="thumb.previewSrc"/>
-            <div class="thumbInfo text-center pending" v-if="thumb.status==='progress'">
+
+            <div class="thumbInfo text-center pending" v-if="isPendingImg(thumb.status)">
                 <span class="glyphicon glyphicon-refresh"></span>
             </div>
-            <div class="thumbInfo text-center success" v-if="thumb.status==='complete'">
+            <div class="thumbInfo text-center success" v-if="isCompleteImg(thumb.status)">
                 <span class="glyphicon glyphicon-ok"></span>
             </div>
-            <div class="thumbInfo text-center error" v-if="thumb.status==='error'">
+            <div class="thumbInfo text-center error" v-if="isErrorImg(thumb.status)">
                 <span class="glyphicon glyphicon-remove"></span>
             </div>
             <div class="file-panel" @click="removeFile(index)">
@@ -47,6 +48,12 @@
                 type: Number,
                 default: 110
             },
+            imgs: {
+                type: Array,
+                default(){
+                    return [];
+                }
+            },
             server: {
                 type: String,
                 default: '/NewApp/UplodeICon?APPCode=kdmj&position=2'
@@ -58,29 +65,35 @@
                 }
             },
             method: {
-                type:String,
-                default:'post'
+                type: String,
+                default: 'post'
             },
             duplicate: {
-                type:Boolean,
-                default:true
+                type: Boolean,
+                default: true
             },
-            accept:{
-                type:Object,
+            accept: {
+                type: Object,
                 default(){
                     return {
-                        extensions:'gif,jpg,jpeg,bmp,png',
+                        extensions: 'gif,jpg,jpeg,bmp,png',
                         mimeTypes: 'image/gif,image/jpg,image/jpeg,image/bmp,image/png'
                     }
                 }
             },
             fileSingleSizeLimit: {
-                type:Number,
-                default:2 * 1024 * 1024
+                type: Number,
+                default: 2 * 1024 * 1024
             },
             fileNumLimit: {
-                type:Number,
-                default:5
+                type: Number,
+                default: 5
+            },
+            formData:{
+                type:Object,
+                default(){
+                    return {};
+                }
             }
         },
         data(){
@@ -90,43 +103,121 @@
         },
         computed: {
             uploadedImgs(){
-                return this.thumbs.filter((item)=> {
-                    return item.status === 'complete';
-                })
+                var imgs = [];
+
+                this.thumbs.map((item)=> {
+                    if (this.isCompleteImg(item.status)) {
+                        imgs.push({
+                            errorText: item.errorText,
+                            previewSrc: item.previewSrc,
+                            previewStatus: item.previewStatus,
+                            status: item.status,
+                            url: item.url
+                        });
+                    }
+                });
+                return imgs;
             },
             errorImgs(){
-                return this.thumbs.filter(item=> {
-                    var statuses=['error','cancelled','interrupt','invalid'];
-                    return statuses.indexOf(item.status)>-1;
+                var imgs = [];
+
+                this.thumbs.map(item=> {
+                    if (this.isErrorImg(item.status)) {
+                        imgs.push({
+                            errorText: item.errorText,
+                            previewSrc: item.previewSrc,
+                            previewStatus: item.previewStatus,
+                            status: item.status,
+                            url: item.url
+                        });
+                    }
                 });
+                return imgs;
             },
             pendingImgs(){
-                return this.thumbs.filter((item)=> {
-                    var statuses=['inited','progress','queued','progress'];
-                    return statuses.indexOf(item.status)>-1;
+                var imgs = [];
+
+                this.thumbs.map((item)=> {
+                    if (this.isPendingImg(item.status)) {
+                        imgs.push({
+                            errorText: item.errorText,
+                            previewSrc: item.previewSrc,
+                            previewStatus: item.previewStatus,
+                            status: item.status,
+                            url: item.url
+                        });
+                    }
                 });
+                return imgs;
             }
         },
+        created(){
+            this.initThumbs();
+        },
         mounted(){
+            this.updateStyle();
             this.initUploader();
+            setTimeout(()=> {
+                var element = this.$refs.root.querySelector('.webuploader-element-invisible');
+
+                element.style.width = this.thumbnailWidth + 'px';
+                element.style.height = this.thumbnailHeight + 'px';
+            })
         },
         methods: {
+            updateStyle(){
+                var children = this.$refs.root.children;
+                for (var i = 0; i < children.length; i++) {
+                    children[i].style.width = this.thumbnailWidth + 'px';
+                    children[i].style.height = this.thumbnailHeight + 'px';
+                }
+            },
+            isCompleteImg(status){
+                return status === 'complete';
+            },
+            isPendingImg(status){
+                var statuses = ['inited', 'progress', 'queued', 'progress'];
+
+                return statuses.indexOf(status) > -1;
+            },
+            isErrorImg(status){
+                var statuses = ['error', 'cancelled', 'interrupt', 'invalid'];
+
+                return statuses.indexOf(status) > -1;
+            },
+            isCanBeStoppedImg(status){
+                var statuses = ['inited', 'queued', 'progress', 'interrupt', 'cancelled'];
+
+                return statuses.indexOf(status) > -1;
+            },
+            initThumbs(){
+                var defaults = {
+                    file: null,
+                    status: '', // 文件从选择到上传经历的一系列状态
+                    errorText: '',//文件上传失败信息
+                    previewStatus: true, // 预览生成状态
+                    previewSrc: '', // 预览生成后的image data
+                    url: '' // 上传到服务器后的返回地址
+                };
+                this.imgs.map(url=> {
+                    this.thumbs.push(utility.base.extend(defaults, {
+                        url: url,
+                        previewSrc: url,
+                        status: 'complete'
+                    }))
+                })
+            },
             removeFile(index){
-                if(index===this.thumbs.length-1){
-                    this.$emit('runtime-error','');
+                if (index === this.thumbs.length - 1) {
+                    this.$emit('runtime-error', '');
                     this.$emit('change-status');
                 }
-                this.uploader.removeFile(this.thumbs[index].file);
+                if (this.thumbs[index].file !== null) {
+                    this.uploader.removeFile(this.thumbs[index].file);
+                }
                 this.thumbs = this.thumbs.filter((item, i)=> {
                     return i !== index;
                 })
-                if(this.thumbs.length===this.fileNumLimit-1){
-                    this.$nextTick(()=>{
-                        this.uploader.addButton({
-                            id: '.addThumb'
-                        });
-                    })
-                }
             },
             upload(){
                 this.uploader.upload();
@@ -143,7 +234,7 @@
                     duplicate: that.duplicate,
                     auto: true,
                     chunked: true,
-                    accept:that.accept,
+                    accept: that.accept,
                     fileSingleSizeLimit: that.fileSingleSizeLimit,
                     fileNumLimit: that.fileNumLimit
                 });
@@ -152,7 +243,7 @@
                     var fileData = {
                         file: file,
                         status: '', // 文件从选择到上传经历的一系列状态
-                        errorText:'',//文件上传失败信息
+                        errorText: '',//文件上传失败信息
                         previewStatus: false, // 预览生成状态
                         previewSrc: '', // 预览生成后的image data
                         url: '' // 上传到服务器后的返回地址
@@ -182,22 +273,26 @@
                     that.thumbs.push(fileData);
                 }
 
+                uploader.on('uploadBeforeSend', function(object, data, headers) {
+                    utility.base.extend(data, that.formData);
+                })
                 uploader.onFileQueued = function(file) {
                     addFile(file);
                 };
                 uploader.onUploadSuccess = function(file, res) {
                     var result = that.resultFilter(res);
                     that.thumbs = that.thumbs.map(item=> {
-                        if (item.file.id === file.id) {
+                        if (item.file !== null && item.file.id === file.id) {
                             if (result.status) {
                                 item.url = result.path;
                                 that.$emit('runtime-success');
+                                that.$emit('runtime-error', '');
                                 that.$emit('change-status');
                                 return item;
                             } else {
                                 item.url = '';
                                 item.status = 'error';
-                                item.errorText=result.msg;
+                                item.errorText = result.msg;
                                 that.$emit('runtime-error', result.msg);
                                 that.$emit('change-status');
                                 return item;
@@ -209,12 +304,12 @@
                     })
                 };
                 uploader.onUploadError = function(file, reason) {
-                    that.thumbs = that.thumbs.map((item, index)=> {
+                    that.thumbs = that.thumbs.map((item)=> {
                         that.$emit('runtime-error', '上传失败，请重试!');
                         that.$emit('change-status');
-                        if (item.file.id === file.id) {
+                        if (item.file !== null && item.file.id === file.id) {
                             item.url = '';
-                            item.errorText='上传失败，请重试!';
+                            item.errorText = '上传失败，请重试!';
                             return item;
                         } else {
                             return item;
@@ -228,30 +323,52 @@
                 that.uploader = uploader;
             },
             isPending(){
-                return this.pendingImgs.length>0;
+                return this.pendingImgs.length > 0;
             },
             getUploadedImgs(){
-                return JSON.parse(JSON.stringify(this.uploadedImgs));
+                return this.uploadedImgs;
             },
             getErrorImgs(){
-                return JSON.parse(JSON.stringify(this.errorImgs));
+                return this.errorImgs;
             },
             getPendingImgs(){
-                return JSON.parse(JSON.stringify(this.pendingImgs));
+                return this.pendingImgs;
             },
             getUrls(){
-                return this.uploadedImgs.map(item=>{
+                return this.uploadedImgs.map(item=> {
                     return item.url;
                 });
-            },
-            emptyList(){
-                this.thumbs = [];
             },
             refreshUploader(){
                 this.uploader.refresh();
             },
             resetUploader(){
                 this.uploader.reset();
+            },
+            cancelUpload(){
+                this.uploader.stop(true);
+                this.thumbs = this.thumbs.filter(item=> {
+                    if (this.isCanBeStoppedImg(item.status)) {
+                        if (item.file !== null) {
+                            this.uploader.removeFile(item.file, true);
+                        }
+                    }
+                    return !this.isCanBeStoppedImg(item.status);
+                });
+            }
+        },
+        watch: {
+            imgs(){
+                this.initThumbs();
+            },
+            thumbs(newVal, oldVal){
+                if (newVal.length < oldVal.length && oldVal.length === this.fileNumLimit) {
+                    this.$nextTick(()=> {
+                        this.uploader.addButton({
+                            id: '.addThumb'
+                        });
+                    })
+                }
             }
         }
     }
@@ -269,8 +386,8 @@
     }
 
     .webuploader-element-invisible {
-        width: 110px;
-        height: 110px;
+        /*width: 110px;*/
+        /*height: 110px;*/
         outline: none;
         opacity: 0;
         cursor: pointer;
@@ -292,8 +409,8 @@
     }
 
     .filelist li {
-        width: 110px;
-        height: 110px;
+        /*width: 110px;*/
+        /*height: 110px;*/
         border: 1px solid #d4d4d4;
         border-radius: 6px;
         text-align: center;
@@ -319,15 +436,22 @@
         line-height: 20px;
         transform: rotate(-45deg);
     }
-    .filelist li .success{
-        background-color:#13ce66;
+
+    .filelist li .success {
+        background-color: #13ce66;
+        box-shadow: 0 0 5px #116235;
     }
-    .filelist li .pending{
-        background-color:#ff5722;
+
+    .filelist li .pending {
+        background-color: #ff5722;
+        box-shadow: 0 0 5px #c13509;
     }
-    .filelist li .error{
-        background-color:#ec1515;
+
+    .filelist li .error {
+        background-color: #ec1515;
+        box-shadow: 0 0 5px #bf0303;
     }
+
     .filelist li .thumbInfo span {
         transform: rotate(45deg);
         color: #fff;

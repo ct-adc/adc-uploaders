@@ -1,7 +1,9 @@
 /**
  * @author rubyisapm
  */
-import Importer from './src/importer/importer.vue';
+import Importer from './component/importer/importer.vue';
+import ImgUploader from './component/img-uploader/img-uploader.vue';
 export default {
-    Importer
+    Importer,
+    ImgUploader
 };
