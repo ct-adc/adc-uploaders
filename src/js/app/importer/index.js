@@ -2,17 +2,21 @@
  * @author rubyisapm
  */
 import Vue from 'vue';
-import uploaders from '../../index.js';
+import uploaders from '../../../../index.js';
 
 new Vue({
     el: '#app',
     data: {
         formData: {
-            os:1
+            os: 1
         },
-        fileSizeLimit:10*1024*1024,
+        fileSizeLimit: 10 * 1024 * 1024,
         server: '/api/patch/uploadPatch',
-        method:'POST'
+        method: 'POST',
+        accept: {
+            extensions: 'csv',
+            mimeTypes: 'csv'
+        }
     },
     components: {
         importer: uploaders.Importer
@@ -25,17 +29,15 @@ new Vue({
             console.log(error);
         },
         changeFormData(){
-            this.formData={
-                os:2
-            }
+            this.formData = {
+                os: 2
+            };
         },
         changeMethod(){
-            this.method='GET';
+            this.method = 'GET';
         },
         changeServer(){
-            this.server='/Api/patch/uploadPatch'
+            this.server = '/Api/patch/uploadPatch';
         }
-
-
     }
 });

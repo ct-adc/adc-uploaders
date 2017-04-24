@@ -14,6 +14,7 @@
               :method="method"
               :form-data="formData"
               :file-size-limit="fileSizeLimit"
+              :accept="accept"
               @success="importSuccess" @error="importError"></importer>
     <button type="button" class="btn btn-default" @click="changeFormData">changeFormData</button>
     <button type="button" class="btn btn-default" @click="changeMethod">changeMethod</button>
@@ -22,6 +23,6 @@
 <script src="http://static.uc108.com/cdn/jquery/2.1.0/jquery.js"></script>
 <script src="http://static.uc108.com/cdn/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="http://static.uc108.com/cdn/webuploader/0.1.5/webuploader.html5only.js"></script>
-<script src="/asset/importer.bundle.js"></script>
+<%= htmlWebpackPlugin.options.script %>
 </body>
 </html>

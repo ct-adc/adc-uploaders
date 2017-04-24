@@ -6,7 +6,11 @@
 
 导入文件组件
 
-[说明文档](https://github.com/ct-adc/adc-uploaders/tree/master/src/importer)
+[说明文档](https://github.com/ct-adc/adc-uploaders/tree/dev/component/importer)
+
+图片上传组件
+
+[说明文档](https://github.com/ct-adc/adc-uploaders/tree/dev/component/img-uploader)
 
 ## changeLog
 

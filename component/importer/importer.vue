@@ -1,6 +1,7 @@
 <template>
-        <span ref="root">
-        <i class="glyphicon glyphicon-import"></i><span class="title">{{ buttonText }}</span>
+    <span ref="root">
+        <i class="glyphicon glyphicon-import"></i>
+        <span class="title">{{ buttonText }}</span>
     </span>
 </template>
 
@@ -26,9 +27,14 @@
                 type: String,
                 default: 'GET'
             },
-            extensions: {
-                type: String,
-                default: ''
+            accept: {
+                type: Object,
+                default(){
+                    return {
+                        extensions:'',
+                        mimeTypes:''
+                    }
+                }
             },
             fileSizeLimit: {
                 type: Number
@@ -55,34 +61,32 @@
                 chunked: true,
                 server: that.server,
                 method: that.method,
-                accept: {
-                    extensions: that.extensions
-                },
+                accept: that.accept,
                 fileSizeLimit: that.fileSizeLimit
             });
-            that.uploader.on('uploadBeforeSend', function (object, data, headers) {
+            that.uploader.on('uploadBeforeSend', function(object, data, headers) {
                 utility.base.extend(data, that.formData);
             })
-            that.uploader.on('uploadStart', function () {
+            that.uploader.on('uploadStart', function() {
                 that.$emit('start');
                 that.loading = true;
             });
 
-            that.uploader.on('uploadSuccess', function (file, response) {
+            that.uploader.on('uploadSuccess', function(file, response) {
                 that.$emit('success', response);
             });
 
-            that.uploader.on('uploadError', function () {
+            that.uploader.on('uploadError', function() {
                 that.$emit('error', '上传失败，请重试！');
             });
 
-            that.uploader.on('error', function (code) {
+            that.uploader.on('error', function(code) {
                 var msg = ERRORS[code] || '上传失败，请重试！';
                 that.loading = false;
                 that.$emit('error', msg);
             });
 
-            that.uploader.on('uploadComplete', function () {
+            that.uploader.on('uploadComplete', function() {
                 that.loading = false;
                 that.uploader.reset();
             })
@@ -92,12 +96,12 @@
                 this.uploader.refresh();
             },
             stop(){
-                this.loading=false;
+                this.loading = false;
                 this.uploader.stop(true);
             }
         },
         watch: {
-            'loading': function (isLoading) {
+            loading(isLoading) {
                 var $webuploaderPick = this.$refs.root.querySelector('.webuploader-pick');
                 if (isLoading) {
                     $webuploaderPick.innerHTML = '<i class="glyphicon glyphicon-refresh importing"></i><span class="title">' + '上传中...' + '</span>';
@@ -105,14 +109,14 @@
                     $webuploaderPick.innerHTML = '<i class="glyphicon glyphicon-import"></i><span class="title">' + this.buttonText + '</span>';
                 }
             },
-            server:function(server){
-                that.uploader.server=server;
+            server: function(server) {
+                that.uploader.server = server;
             }
         }
     }
 </script>
 
-<style>
+<style scoped>
     .webuploader-pick .importing {
         animation: importing .8s infinite linear;
     }

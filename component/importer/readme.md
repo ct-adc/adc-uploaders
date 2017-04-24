@@ -18,10 +18,20 @@ Vue.component(Importer.name,Importer);
 --- | --- | --- | --- |
 buttonText | 按钮文字 | String | '导入文件'
 server | 上传接口地址 | String | ''
-extensions | 可以接受的文件后缀，以‘,’隔开 如 jpg,png,gif | String | ''
+accept | 和webuploader中accept配置项一致，包含extensions和mimeTypes两项。 | Object | ''
 fileSizeLimit | 可以接受的文件大小(单位为B) | Number | undefined
 formData | 随文件上传的参数 | Object | {}
 
+### accept
+
+accept参数为一个对象，包含两项：
+* extensions
+
+以‘,’隔开 如 jpg,png,gif
+
+* mimeTypes
+
+文件类型,如'image/jpeg'. 请具体列出文件类型，避免类似'image/*'这样的写法。
 
 ## 事件说明
 
