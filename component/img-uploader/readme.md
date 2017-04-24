@@ -14,19 +14,19 @@ Vue.component(ImgUploader.name,ImgUploader);
 ```
 ## 参数说明
 
-参数|描述|类型|默认值
+参数|描述|类型|是否必填|默认值
 --- | --- | --- | --- |
-thumbnailWidth | 生成缩略图的宽度 | Number | 110
-thumbnailHeight | 生成缩略图的高度 | Number | 110
-imgs | 图片列表，每项为一个图片路径 | Array | []
-server | 接口地址 | String | ''
-resultFilter | 将响应数据处理为固定格式结果的过滤器，**详细见下方** | Function | new Function()
-method | 上传图片的ajax请求类型 | String | 'post'
-duplicate | 是否允许同样的图片上传两张 | Boolean | false
-accept | 可接受的文件类型 | Object | **详细见下方**
-fileSingleSizeLimit | 单个文件的大小限制，以Byte为单位 | Number | 2 * 1024 * 1024
-fileNumLimit | 文件数量的限制 | Number | 5
-formData | 上传图片时附加的表单数据 | Object | {}
+thumbnailWidth | 生成缩略图的宽度 | Number | 否 | 110
+thumbnailHeight | 生成缩略图的高度 | Number | 否 | 110
+imgs | 图片列表，每项为一个图片路径 | Array | 否 |[]
+server | 接口地址 | String | 是 | ''
+resultFilter | 将响应数据处理为固定格式结果的过滤器，**详细见下方** | Function | 是 | new Function()
+method | 上传图片的ajax请求类型 | String | 否 | 'post'
+duplicate | 是否允许同样的图片上传两张 | Boolean | 否 | false
+accept | 可接受的文件类型 | Object | 否 | **详细见下方**
+fileSingleSizeLimit | 单个文件的大小限制，以Byte为单位 | Number | 否 | 2 * 1024 * 1024
+fileNumLimit | 文件数量的限制 | Number | 否 | 5
+formData | 上传图片时附加的表单数据 | Object | 否 | {}
 
 ### resultFilter
 

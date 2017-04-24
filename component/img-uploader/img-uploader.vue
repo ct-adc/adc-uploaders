@@ -1,6 +1,7 @@
 <template>
     <ul class="filelist" ref="root">
-        <li v-for="(thumb,index) in thumbs">
+        <li v-for="(thumb,index) in thumbs"
+            :style="{width:thumbnailWidth+'px',height:thumbnailHeight+'px'}">
             <img :src="thumb.previewSrc"/>
 
             <div class="thumbInfo text-center pending" v-if="isPendingImg(thumb.status)">
@@ -16,7 +17,9 @@
                 <span class="glyphicon glyphicon-trash"></span>
             </div>
         </li>
-        <li class="addThumb" v-if="thumbs.length<fileNumLimit">
+        <li class="addThumb"
+            v-if="thumbs.length<fileNumLimit"
+            :style="{width:thumbnailWidth+'px',height:thumbnailHeight+'px'}">
             <span class="glyphicon glyphicon-plus"></span>
         </li>
     </ul>
@@ -56,7 +59,7 @@
             },
             server: {
                 type: String,
-                default: '/NewApp/UplodeICon?APPCode=kdmj&position=2'
+                default: ''
             },
             resultFilter: {
                 type: Function,
@@ -155,23 +158,14 @@
             this.initThumbs();
         },
         mounted(){
-            this.updateStyle();
             this.initUploader();
             setTimeout(()=> {
                 var element = this.$refs.root.querySelector('.webuploader-element-invisible');
-
                 element.style.width = this.thumbnailWidth + 'px';
                 element.style.height = this.thumbnailHeight + 'px';
             })
         },
         methods: {
-            updateStyle(){
-                var children = this.$refs.root.children;
-                for (var i = 0; i < children.length; i++) {
-                    children[i].style.width = this.thumbnailWidth + 'px';
-                    children[i].style.height = this.thumbnailHeight + 'px';
-                }
-            },
             isCompleteImg(status){
                 return status === 'complete';
             },

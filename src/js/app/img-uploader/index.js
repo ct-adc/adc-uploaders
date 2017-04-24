@@ -14,7 +14,8 @@ new Vue({
         imgs: ['http://gsimg.tcy365.com/icon/kdmj_130_1492958735.png'],
         formData: {
             os: 1
-        }
+        },
+        server: '/NewApp/UplodeICon?APPCode=kdmj&position=2'
     },
     methods: {
         resultFilter(res){
