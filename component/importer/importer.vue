@@ -1,5 +1,5 @@
 <template>
-        <span ref="root">
+    <span ref="root">
         <i class="glyphicon glyphicon-import"></i>
         <span class="title">{{ buttonText }}</span>
     </span>
@@ -27,9 +27,14 @@
                 type: String,
                 default: 'GET'
             },
-            extensions: {
-                type: String,
-                default: ''
+            accept: {
+                type: Object,
+                default(){
+                    return {
+                        extensions:'',
+                        mimeTypes:''
+                    }
+                }
             },
             fileSizeLimit: {
                 type: Number
@@ -56,9 +61,7 @@
                 chunked: true,
                 server: that.server,
                 method: that.method,
-                accept: {
-                    extensions: that.extensions
-                },
+                accept: that.accept,
                 fileSizeLimit: that.fileSizeLimit
             });
             that.uploader.on('uploadBeforeSend', function(object, data, headers) {
@@ -98,7 +101,7 @@
             }
         },
         watch: {
-            'loading': function(isLoading) {
+            loading(isLoading) {
                 var $webuploaderPick = this.$refs.root.querySelector('.webuploader-pick');
                 if (isLoading) {
                     $webuploaderPick.innerHTML = '<i class="glyphicon glyphicon-refresh importing"></i><span class="title">' + '上传中...' + '</span>';
@@ -113,7 +116,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .webuploader-pick .importing {
         animation: importing .8s infinite linear;
     }

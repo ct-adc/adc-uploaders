@@ -369,7 +369,7 @@
 
 </script>
 
-<style>
+<style scoped>
     .webuploader-pick {
         overflow: hidden;
         position: absolute;

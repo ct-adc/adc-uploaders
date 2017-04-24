@@ -12,7 +12,11 @@ new Vue({
         },
         fileSizeLimit: 10 * 1024 * 1024,
         server: '/api/patch/uploadPatch',
-        method: 'POST'
+        method: 'POST',
+        accept: {
+            extensions: 'csv',
+            mimeTypes: 'csv'
+        }
     },
     components: {
         importer: uploaders.Importer

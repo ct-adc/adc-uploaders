@@ -14,6 +14,7 @@
               :method="method"
               :form-data="formData"
               :file-size-limit="fileSizeLimit"
+              :accept="accept"
               @success="importSuccess" @error="importError"></importer>
     <button type="button" class="btn btn-default" @click="changeFormData">changeFormData</button>
     <button type="button" class="btn btn-default" @click="changeMethod">changeMethod</button>
