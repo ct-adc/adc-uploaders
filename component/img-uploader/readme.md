@@ -17,7 +17,7 @@ Vue.component(ImgUploader.name,ImgUploader);
 ## 参数说明
 
 参数|描述|类型|是否必填|默认值
---- | --- | --- | --- |
+--- | --- | --- | --- | ---
 thumbnailWidth | 生成缩略图的宽度 | Number | 否 | 110
 thumbnailHeight | 生成缩略图的高度 | Number | 否 | 110
 imgs | 图片列表，每项为一个图片路径 | Array | 否 |[]
