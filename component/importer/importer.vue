@@ -110,7 +110,7 @@
                 }
             },
             server: function(server) {
-                that.uploader.server = server;
+                this.uploader.option('server',server);
             }
         }
     }

@@ -1,13 +1,14 @@
 {
   "name": "ct-adc-uploaders",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Vue.js project",
   "author": "skysunshine99 <skysunshine99@126.com>",
   "private": false,
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint --ext .js,.vue src",
+    "pub": "webpack --config publish.config.js"
   },
   "dependencies": {
     "vue": "^2.2.1",
