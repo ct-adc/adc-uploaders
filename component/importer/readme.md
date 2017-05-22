@@ -1,5 +1,7 @@
 # 导入文件组件
 
+## [在线demo](https://codepen.io/rubyisapm/pen/WjYVPp)
+
 ## 使用
 
 从npm安装`ct-adc-uploaders`

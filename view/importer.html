@@ -1,1 +1,23 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><title>list</title><link href=http://static.uc108.com/cdn/bootstrap/3.3.5/css/bootstrap.dz.min.css rel=stylesheet><link href=http://static.uc108.com/cdn/bootstrap/3.3.5/css/theme.css rel=stylesheet><link rel=stylesheet href=http://static.uc108.com/cdn/webuploader/0.1.5/webuploader.dz.css></head><body><div id=app style=margin-left:20px><importer :server=server :method=method :form-data=formData :file-size-limit=fileSizeLimit @success=importSuccess @error=importError></importer><button type=button class="btn btn-default" @click=changeFormData>changeFormData</button> <button type=button class="btn btn-default" @click=changeMethod>changeMethod</button> <button type=button class="btn btn-default" @click=changeServer>changeServer</button></div><script src=http://static.uc108.com/cdn/jquery/2.1.0/jquery.js></script><script src=http://static.uc108.com/cdn/bootstrap/3.3.5/js/bootstrap.min.js></script><script src=http://static.uc108.com/cdn/webuploader/0.1.5/webuploader.html5only.js></script><script src=/asset/1.0.0/js/importer.js></script></body></html>
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <title>list</title>
+    <link href=http://static.uc108.com/cdn/bootstrap/3.3.5/css/bootstrap.dz.min.css rel=stylesheet>
+    <link href=http://static.uc108.com/cdn/bootstrap/3.3.5/css/theme.css rel=stylesheet>
+    <link rel=stylesheet href=http://static.uc108.com/cdn/webuploader/0.1.5/webuploader.dz.css>
+</head>
+<body>
+<div id=app style=margin-left:20px>
+    <importer :server=server :method=method :form-data=formData :file-size-limit=fileSizeLimit @success=importSuccess
+              @error=importError></importer>
+    <button type=button class="btn btn-default" @click=changeFormData>changeFormData</button>
+    <button type=button class="btn btn-default" @click=changeMethod>changeMethod</button>
+    <button type=button class="btn btn-default" @click=changeServer>changeServer</button>
+</div>
+<script src=http://static.uc108.com/cdn/jquery/2.1.0/jquery.js></script>
+<script src=http://static.uc108.com/cdn/bootstrap/3.3.5/js/bootstrap.min.js></script>
+<script src=http://static.uc108.com/cdn/webuploader/0.1.5/webuploader.html5only.js></script>
+<script src=/asset/1.0.0/js/importer.js></script>
+</body>
+</html>

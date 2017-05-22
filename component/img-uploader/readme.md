@@ -1,4 +1,6 @@
-# 导入文件组件
+# 导入图片组件
+
+## [在线demo](https://codepen.io/rubyisapm/pen/KmbPKy?editors=1010)
 
 ## 使用
 
