@@ -4,6 +4,7 @@ var apiProxy = function () {
   if (mockData.define.isProxy) {
     return mockData.define.proxies.map(function(item){
       return proxy(item.domain, {
+          limit:'500mb',
         forwardPath: function (req, res) {
           return req._parsedUrl.path
         }

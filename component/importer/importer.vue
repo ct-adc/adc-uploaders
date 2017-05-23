@@ -44,6 +44,10 @@
                 default () {
                     return {}
                 }
+            },
+            chunked:{
+                type:Boolean,
+                default:true
             }
         },
         data () {
@@ -58,7 +62,7 @@
                     id: that.$refs.root
                 },
                 auto: true,
-                chunked: true,
+                chunked: that.chunked,
                 server: that.server,
                 method: that.method,
                 accept: that.accept,
