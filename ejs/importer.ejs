@@ -15,15 +15,20 @@
               :form-data="formData"
               :file-size-limit="fileSizeLimit"
               :accept="accept"
+              :disabled="disabled"
+              :tip="tip"
+              :direction="direction"
               @success="importSuccess" @error="importError"></importer>
-    <button type="button" class="btn btn-default" @click="changeFormData">changeFormData</button>
-    <button type="button" class="btn btn-default" @click="changeMethod">changeMethod</button>
-    <button type="button" class="btn btn-default" @click="changeServer">changeServer</button>
+    <button type="button" class="btn btn-default" @click="changeFormData">修改formData</button>
+    <button type="button" class="btn btn-default" @click="changeMethod">修改请求方式为get</button>
+    <button type="button" class="btn btn-default" @click="changeServer">修改server</button>
+    <button type="button" class="btn btn-default" @click="changeStatus">修改上传按钮disable状态</button>
+    <button type="button" class="btn btn-default" @click="changeTip">修改tip值</button>
+    <button type="button" class="btn btn-default" @click="resetTip">置空tip</button>
 </div>
 <script src="http://static.uc108.com/cdn/jquery/2.1.0/jquery.js"></script>
 <script src="http://static.uc108.com/cdn/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="http://static.uc108.com/cdn/webuploader/0.1.5/webuploader.html5only.js"></script>
 <%= htmlWebpackPlugin.options.script %>
-<script src="http://hd.tcysys.uc108.org:1505/SignInUserWeb/static/js/app.js"></script>
 </body>
 </html>

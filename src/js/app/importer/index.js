@@ -16,7 +16,10 @@ new Vue({
         accept: {
             extensions: 'csv',
             mimeTypes: 'csv'
-        }
+        },
+        disabled: true,
+        tip: '错误提示',
+        direction: 'bottom'
     },
     components: {
         importer: uploaders.Importer
@@ -38,6 +41,15 @@ new Vue({
         },
         changeServer(){
             this.server = '/Api/patch/uploadPatch';
+        },
+        changeStatus(){
+            this.disabled = !this.disabled;
+        },
+        changeTip(){
+            this.tip = '错误提示2';
+        },
+        resetTip(){
+            this.tip = '';
         }
     }
 });
