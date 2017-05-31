@@ -69,8 +69,7 @@
         },
         data () {
             return {
-                loading: false,
-                tip: ''
+                loading: false
             };
         },
         mounted () {
