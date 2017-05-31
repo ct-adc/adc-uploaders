@@ -14,8 +14,8 @@ module.exports = {
     isProxy: true,
     proxies:[
       {
-        matchPath:/\/NewApp/i,
-        domain:'http://tcysys.admin.ct108.org:1505'
+        matchPath:/\/api/i,
+        domain:'http://tcysystinker.admin.ct108.org:1505'
       }
     ]
   },

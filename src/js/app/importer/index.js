@@ -10,14 +10,14 @@ new Vue({
         formData: {
             os: 1
         },
-        fileSizeLimit: 10 * 1024 * 1024,
+        fileSizeLimit: 1000000 * 1024 * 1024,
         server: '/api/patch/uploadPatch',
         method: 'POST',
         accept: {
-            extensions: 'csv',
-            mimeTypes: 'csv'
+            extensions: '',
+            mimeTypes: ''
         },
-        disabled: true,
+        disabled: false,
         tip: '错误提示',
         direction: 'bottom'
     },

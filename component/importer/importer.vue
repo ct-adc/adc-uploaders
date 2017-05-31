@@ -163,7 +163,7 @@
             loading(isLoading) {
                 var $webuploaderPick = this.$refs.root.querySelector('.webuploader-pick');
                 if (isLoading) {
-                    $webuploaderPick.innerHTML = '<i class="glyphicon glyphicon-refresh importing"></i><span class="title">' + '上传中...' + '</span>';
+                    $webuploaderPick.innerHTML = '<i class="glyphicon glyphicon-refresh rotate"></i><span class="title">' + '上传中...' + '</span>';
                 } else {
                     $webuploaderPick.innerHTML = '<i class="glyphicon glyphicon-import"></i><span class="title">' + this.buttonText + '</span>';
                 }
@@ -246,21 +246,7 @@
         pointer-events: none;
     }
 
-    .webuploader-pick .importing {
-        animation: importing .8s infinite linear;
-    }
-
     .webuploader-pick .glyphicon {
         margin-right: 5px;
-    }
-
-    @keyframes importing {
-        0% {
-            transform: rotate(0deg);
-        }
-
-        100% {
-            transform: rotate(360deg);
-        }
     }
 </style>
