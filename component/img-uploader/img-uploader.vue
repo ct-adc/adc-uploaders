@@ -1,5 +1,5 @@
 <template>
-    <ul class="filelist" ref="root">
+    <ul class="filelist ct-adc-img-uploader" ref="root">
         <li v-for="(thumb,index) in thumbs"
             :style="{width:thumbnailWidth+'px',height:thumbnailHeight+'px'}">
             <img :src="thumb.previewSrc"/>
@@ -369,8 +369,8 @@
 
 </script>
 
-<style scoped>
-    .webuploader-pick {
+<style>
+    .ct-adc-img-uploader .webuploader-pick {
         overflow: hidden;
         position: absolute;
         top: 0;
@@ -379,7 +379,7 @@
         bottom: 0;
     }
 
-    .webuploader-element-invisible {
+    .ct-adc-img-uploader .webuploader-element-invisible {
         /*width: 110px;*/
         /*height: 110px;*/
         outline: none;
@@ -387,13 +387,13 @@
         cursor: pointer;
     }
 
-    .filelist {
+    .ct-adc-img-uploader.filelist {
         list-style: none;
         margin: 0;
         padding: 0;
     }
 
-    .filelist:after {
+    .ct-adc-img-uploader.filelist:after {
         content: '';
         display: block;
         width: 0;
@@ -402,7 +402,7 @@
         clear: both;
     }
 
-    .filelist li {
+    .ct-adc-img-uploader.filelist li {
         /*width: 110px;*/
         /*height: 110px;*/
         border: 1px solid #d4d4d4;
@@ -416,12 +416,12 @@
         font-size: 12px;
     }
 
-    .filelist li img {
+    .ct-adc-img-uploader.filelist li img {
         width: 100%;
         height: 100%;
     }
 
-    .filelist li .thumbInfo {
+    .ct-adc-img-uploader.filelist li .thumbInfo {
         position: absolute;
         bottom: -2px;
         right: -14px;
@@ -431,17 +431,17 @@
         transform: rotate(-45deg);
     }
 
-    .filelist li .success {
+    .ct-adc-img-uploader.filelist li .success {
         background-color: #13ce66;
         box-shadow: 0 0 5px #116235;
     }
 
-    .filelist li .pending {
+    .ct-adc-img-uploader.filelist li .pending {
         background-color: #ff5722;
         box-shadow: 0 0 5px #c13509;
     }
 
-    .filelist li .error {
+    .ct-adc-img-uploader.filelist li .error {
         background-color: #ec1515;
         box-shadow: 0 0 5px #bf0303;
     }

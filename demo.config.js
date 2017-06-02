@@ -17,14 +17,10 @@ module.exports = {
                 loader: 'babel-loader',
                 exclude: /node_modules/
             },{
-                test: /\.css$/,
-                loader: 'css-loader'
-            },{
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 options: {
                     loaders: {
-                        'css':'vue-style-loader!css-loader',
                         'scss': 'vue-style-loader!css-loader!sass-loader',
                         'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
                     }

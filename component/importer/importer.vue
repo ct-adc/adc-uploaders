@@ -1,6 +1,6 @@
 <template>
     <span ref="root"
-          class="webuploader-container"
+          class="webuploader-container ct-adc-importer"
           :class="disabled ? 'disabledWrap' : ''"
           :data-placement="direction"
           :data-original-title="tip">
@@ -192,26 +192,23 @@
     }
 </script>
 
-
 <style>
-    .disabledWrap label {
-        position: absolute;
-        z-index: -9999;
-    }
-</style>
-<style scoped>
-    .webuploader-container {
+    .ct-adc-importer.webuploader-container {
         position: relative;
         display: inline-block;
     }
+    .ct-adc-importer.disabledWrap label {
+        position: absolute;
+        z-index: -9999;
+    }
 
-    .webuploader-element-invisible {
+    .ct-adc-importer .webuploader-element-invisible {
         position: absolute !important;
         clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
         clip: rect(1px, 1px, 1px, 1px);
     }
 
-    .webuploader-pick {
+    .ct-adc-importer .webuploader-pick {
         position: relative;
         display: inline-block;
         cursor: pointer;
@@ -237,16 +234,18 @@
         user-select: none;
     }
 
-    .webuploader-pick-hover {
+    .ct-adc-importer .webuploader-pick-hover {
         background: #00a2d4;
     }
 
-    .webuploader-pick-disable {
+    .ct-adc-importer .webuploader-pick-disable {
         opacity: 0.6;
         pointer-events: none;
     }
 
-    .webuploader-pick .glyphicon {
+
+
+    .ct-adc-importer .webuploader-pick .glyphicon {
         margin-right: 5px;
     }
 </style>
