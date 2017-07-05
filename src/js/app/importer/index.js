@@ -10,16 +10,18 @@ new Vue({
         formData: {
             os: 1
         },
-        fileSizeLimit: 1000000 * 1024 * 1024,
+        fileSizeLimit: 100000 * 1024 * 1024,
         server: '/api/patch/uploadPatch',
         method: 'POST',
         accept: {
             extensions: '',
             mimeTypes: ''
         },
+        chunked: true,
         disabled: false,
         tip: '错误提示',
-        direction: 'bottom'
+        direction: 'bottom',
+        buttonText: '上传文件'
     },
     components: {
         importer: uploaders.Importer
@@ -50,6 +52,21 @@ new Vue({
         },
         resetTip(){
             this.tip = '';
+        },
+        changeFileSizeLimit(){
+            this.fileSizeLimit = 1024 * 1024;
+        },
+        changeAccept(){
+            this.accept = {
+                extensions: 'jpg',
+                mimeTypes: 'image/jpeg,image/jpg'
+            };
+        },
+        changeChunked(){
+            this.chunked = false;
+        },
+        changeBtnText(){
+            this.buttonText = '上传';
         }
     }
 });

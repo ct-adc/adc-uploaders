@@ -92,8 +92,8 @@
                 type: Number,
                 default: 5
             },
-            formData:{
-                type:Object,
+            formData: {
+                type: Object,
                 default(){
                     return {};
                 }
@@ -363,10 +363,27 @@
                         });
                     })
                 }
+            },
+            server: function(server) {
+                this.uploader.option('server', server);
+            },
+            method(newVal){
+                this.uploader.option('method', newVal);
+            },
+            duplicate(){
+                this.uploader.destroy();
+                this.initUploader();
+            },
+            accept(){
+                this.uploader.destroy();
+                this.initUploader();
+            },
+            fileSingleSizeLimit(){
+                this.uploader.destroy();
+                this.initUploader();
             }
         }
     }
-
 </script>
 
 <style>

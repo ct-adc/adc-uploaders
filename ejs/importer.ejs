@@ -16,6 +16,8 @@
               :file-size-limit="fileSizeLimit"
               :accept="accept"
               :disabled="disabled"
+              :button-text="buttonText"
+              :chunked="chunked"
               :tip="tip"
               :direction="direction"
               @success="importSuccess" @error="importError"></importer>
@@ -25,6 +27,11 @@
     <button type="button" class="btn btn-default" @click="changeStatus">修改上传按钮disable状态</button>
     <button type="button" class="btn btn-default" @click="changeTip">修改tip值</button>
     <button type="button" class="btn btn-default" @click="resetTip">置空tip</button>
+    <button type="button" class="btn btn-default" @click="changeFileSizeLimit">改变文件大小限制</button>
+    <button type="button" class="btn btn-default" @click="changeAccept">改变文件类型限制</button>
+    <button type="button" class="btn btn-default" @click="changeChunked">改变分片配置</button>
+    <button type="button" class="btn btn-default" @click="changeBtnText">改变按钮文字</button>
+
 </div>
 <script src="http://static.uc108.com/cdn/jquery/2.1.0/jquery.js"></script>
 <script src="http://static.uc108.com/cdn/bootstrap/3.3.5/js/bootstrap.min.js"></script>

@@ -15,7 +15,8 @@ module.exports = {
     proxies:[
       {
         matchPath:/\/api/i,
-        domain:'http://tcysystinker.admin.ct108.org:1505'
+        domain:'http://tcysys.admin.ct108.org:1505'
+        //domain:'http://tcysystinker.admin.ct108.org:1505'
       }
     ]
   },

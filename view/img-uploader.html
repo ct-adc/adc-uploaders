@@ -11,7 +11,10 @@
     <div class="panel panel-default">
         <div class=panel-heading><h3 class=panel-title>上传图片</h3></div>
         <div class=panel-body>
-            <img-uploader ref=imgUploader :imgs=imgs :result-filter=resultFilter
+            <img-uploader ref=imgUploader
+                          :imgs=imgs
+                          :result-filter=resultFilter
+                          :thumbnail-width="thumbnailWidth"
                           @runtime-error=showError></img-uploader>
         </div>
         <div class="panel-footer clearfix"><span class=text-danger>{{error}}</span> <span class=pull-right><button

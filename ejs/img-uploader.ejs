@@ -15,12 +15,16 @@
         </div>
         <div class="panel-body">
             <img-uploader ref="imgUploader"
-                          :thumbnail-width="100"
-                          :thumbnail-height="100"
+                          :thumbnail-width="thumbnailWidth"
+                          :thumbnail-height="thumbnailHeight"
                           :imgs="imgs"
                           :server="server"
                           :result-filter="resultFilter"
                           :form-data="formData"
+                          :method="method"
+                          :duplicate="duplicate"
+                          :accept="accept"
+                          :file-single-size-limit="fileSingleSizeLimit"
                           @runtime-error="showError">
             </img-uploader>
         </div>
@@ -38,7 +42,23 @@
             </span>
         </div>
     </div>
-
+    <div>
+        <button type="button" class="btn btn-sm btn-primary" @click="changeThumbnail">
+            改变图片的缩略图大小
+        </button>
+        <button type="button" class="btn btn-sm btn-primary" @click="changeMethod">
+            图片上传的方式post-get
+        </button>
+        <button type="button" class="btn btn-sm btn-primary" @click="changeAccept">
+            图片格式jpg-png
+        </button>
+        <button type="button" class="btn btn-sm btn-primary" @click="changeFileSingleSizeLimit">
+            单个文件大小2M-1K
+        </button>
+        <button type="button" class="btn btn-sm btn-primary" @click="changeDuplicate">
+            图片不可重复-图片可重复
+        </button>
+    </div>
 
 </div>
 <script src="http://static.uc108.com/cdn/jquery/2.1.0/jquery.js"></script>

@@ -15,9 +15,37 @@ new Vue({
         formData: {
             os: 1
         },
-        server: '/NewApp/UplodeICon?APPCode=kdmj&position=2'
+        server: '/NewApp/UplodeICon?APPCode=kdmj&position=2',
+        thumbnailWidth: 200,
+        thumbnailHeight: 200,
+        method: 'post',
+        duplicate: false,
+        accept: {
+            extensions: 'jpg',
+            mimeTypes: 'image/jpg'
+        },
+        fileSingleSizeLimit: 2 * 1024 * 1024
     },
     methods: {
+        changeThumbnail(){
+            this.thumbnailWidth = 100;
+            this.thumbnailHeight = 100;
+        },
+        changeMethod(){
+            this.method = 'get';
+        },
+        changeAccept(){
+            this.accept = {
+                extensions: 'png',
+                mimeTypes: 'image/png'
+            };
+        },
+        changeFileSingleSizeLimit(){
+            this.fileSingleSizeLimit = 1024;
+        },
+        changeDuplicate(){
+            this.duplicate = true;
+        },
         resultFilter(res){
             if (res.IsFinish) {
                 return {

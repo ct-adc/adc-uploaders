@@ -160,6 +160,24 @@
             }
         },
         watch: {
+            accept(){
+                this.uploader.destroy();
+                this.initUploader();
+            },
+            fileSizeLimit(){
+                this.uploader.destroy();
+                this.initUploader();
+            },
+            chunked(newVal){
+                this.uploader.option('chunked', newVal);
+            },
+            buttonText(newVal){
+                var $webuploaderPick = this.$refs.root.querySelector('.webuploader-pick');
+                $webuploaderPick.innerHTML = '<i class="glyphicon glyphicon-import"></i><span class="title">' + newVal + '</span>';
+            },
+            method(newVal){
+                this.uploader.option('method', newVal);
+            },
             loading(isLoading) {
                 var $webuploaderPick = this.$refs.root.querySelector('.webuploader-pick');
                 if (isLoading) {
@@ -197,6 +215,7 @@
         position: relative;
         display: inline-block;
     }
+
     .ct-adc-importer.disabledWrap label {
         position: absolute;
         z-index: -9999;
@@ -242,8 +261,6 @@
         opacity: 0.6;
         pointer-events: none;
     }
-
-
 
     .ct-adc-importer .webuploader-pick .glyphicon {
         margin-right: 5px;
