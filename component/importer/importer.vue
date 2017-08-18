@@ -80,6 +80,7 @@
             } else {
                 this.enableUploader();
             }
+            this.refresh();
         },
         methods: {
             initUploader(){

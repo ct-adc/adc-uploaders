@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "vue": "^2.2.1",
-    "ct-utility":"~0.0.2"
+    "ct-utility": "~0.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
