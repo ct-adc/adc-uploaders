@@ -5,6 +5,7 @@
 *2017-09-06*
 
 - 优化 依赖的webuploader版本从0.1.5改为0.1.6
+- 优化 importer / img-uploader中的 error事件和runtime-error事件中必要时暴露出http状态码，具体请查看readme
 
 ### 1.1.5
 
