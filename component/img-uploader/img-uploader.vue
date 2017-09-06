@@ -299,11 +299,11 @@
                 };
                 uploader.onUploadError = function(file, reason) {
                     that.thumbs = that.thumbs.map((item)=> {
-                        that.$emit('runtime-error', '上传失败，请重试!');
+                        that.$emit('runtime-error', reason);
                         that.$emit('change-status');
                         if (item.file !== null && item.file.id === file.id) {
                             item.url = '';
-                            item.errorText = '上传失败，请重试!';
+                            item.errorText = reason;
                             return item;
                         } else {
                             return item;

@@ -108,8 +108,8 @@
                     that.$emit('success', response);
                 });
 
-                that.uploader.on('uploadError', function() {
-                    that.$emit('error', '上传失败，请重试！');
+                that.uploader.on('uploadError', function(file, reason) {
+                    that.$emit('error', reason);
                 });
 
                 that.uploader.on('error', function(code) {

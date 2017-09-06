@@ -3,7 +3,6 @@
  */
 import Vue from 'vue';
 import uploaders from '../../../../index.js';
-
 new Vue({
     el: '#app',
     data: {
