@@ -1,6 +1,8 @@
 # 导入文件组件
 
-## [在线demo](https://codepen.io/rubyisapm/pen/WjYVPp?_blank)
+## [在线demo](https://codepen.io/rubyisapm/pen/WjYVPp)
+
+<a href="https://codepen.io/rubyisapm/pen/WjYVPp">在线demo</a>
 
 ## 使用
 
