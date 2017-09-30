@@ -1,16 +1,31 @@
 <template>
-    <span ref="root"
-          class="webuploader-container ct-adc-importer"
-          :class="disabled ? 'disabledWrap' : ''"
-          :data-placement="direction"
-          :data-original-title="tip">
-        <!--webuploader-container是后续上传插件往外层元素span上加入的类名，这里直接绑定到class上是为了避免后续dom渲染时保持span有该类-->
-        <i class="glyphicon glyphicon-import"></i>
-        <span class="title">{{ buttonText }}</span>
-    </span>
+    <div :class="{'input-group':hasInput}">
+        <input v-if="hasInput" type="text" class="form-control input-sm" :placeholder="inputPlaceholder" :value="fileName">
+        <div :class="{'input-group-addon':hasInput}">
+            <span ref="root"
+                  class="webuploader-container ct-adc-importer"
+                  :class="disabled ? 'disabledWrap' : ''"
+                  :data-placement="direction"
+                  :data-original-title="tip">
+                <!--webuploader-container是后续上传插件往外层元素span上加入的类名，这里直接绑定到class上是为了避免后续dom渲染时保持span有该类-->
+                <i class="glyphicon" :class="hasInput ? 'glyphicon-folder-open' : 'glyphicon-import'"></i>
+                <span class="title">{{ buttonText }}</span>
+            </span>
+        </div>
+    </div>
+    <!--<span v-else-->
+          <!--ref="root"-->
+          <!--class="webuploader-container ct-adc-importer"-->
+          <!--:class="disabled ? 'disabledWrap' : ''"-->
+          <!--:data-placement="direction"-->
+          <!--:data-original-title="tip">-->
+        <!--&lt;!&ndash;webuploader-container是后续上传插件往外层元素span上加入的类名，这里直接绑定到class上是为了避免后续dom渲染时保持span有该类&ndash;&gt;-->
+        <!--<i class="glyphicon glyphicon-import"></i>-->
+        <!--<span class="title">{{ buttonText }}</span>-->
+    <!--</span>-->
 </template>
 
-<script type="es6">
+<script type="text/ecmascript-6">
     import utility from 'ct-utility';
     var ERRORS = {
         Q_EXCEED_NUM_LIMIT: '文件数量超出限制',
@@ -20,9 +35,17 @@
     export default {
         name: 'importer',
         props: {
+            hasInput: {
+                type: Boolean,
+                default: false
+            },
             buttonText: {
                 type: String,
                 default: '导入文件'
+            },
+            inputPlaceholder: {
+                type: String,
+                default: '请上传一个文件'
             },
             server: {
                 type: String,
@@ -69,6 +92,7 @@
         },
         data () {
             return {
+                fileName: '',
                 loading: false
             };
         },
@@ -105,16 +129,25 @@
                 });
 
                 that.uploader.on('uploadSuccess', function(file, response) {
+                    if(that.hasInput){
+                        that.fileName=file.name;
+                    }
                     that.$emit('success', response);
                 });
 
                 that.uploader.on('uploadError', function(file, reason) {
+                    if(that.hasInput){
+                        that.fileName='';
+                    }
                     that.$emit('error', reason);
                 });
 
                 that.uploader.on('error', function(code) {
                     var msg = ERRORS[code] || '上传失败，请重试！';
                     that.loading = false;
+                    if(that.hasInput){
+                        that.fileName='';
+                    }
                     that.$emit('error', msg);
                 });
 
@@ -175,6 +208,16 @@
             buttonText(newVal){
                 var $webuploaderPick = this.$refs.root.querySelector('.webuploader-pick');
                 $webuploaderPick.innerHTML = '<i class="glyphicon glyphicon-import"></i><span class="title">' + newVal + '</span>';
+            },
+            hasInput(newVal){
+                var $webuploaderPick = this.$refs.root.querySelector('.webuploader-pick').querySelector('.glyphicon');
+                if(newVal){
+                    $webuploaderPick.classList.remove('glyphicon-import');
+                    $webuploaderPick.classList.add('glyphicon-folder-open');
+                }else{
+                    $webuploaderPick.classList.remove('glyphicon-folder-open');
+                    $webuploaderPick.classList.add('glyphicon-import');
+                }
             },
             method(newVal){
                 this.uploader.option('method', newVal);
@@ -265,5 +308,13 @@
 
     .ct-adc-importer .webuploader-pick .glyphicon {
         margin-right: 5px;
+    }
+
+    .input-group-addon{
+        padding:0;
+        border:none;
+    }
+    .input-group-addon .webuploader-pick{
+        border-radius: 0 3px 3px 0;
     }
 </style>

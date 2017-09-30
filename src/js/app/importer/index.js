@@ -20,7 +20,8 @@ new Vue({
         disabled: false,
         tip: '错误提示',
         direction: 'bottom',
-        buttonText: '上传文件'
+        buttonText: '上传文件',
+        hasInput: false
     },
     components: {
         importer: uploaders.Importer
@@ -66,6 +67,9 @@ new Vue({
         },
         changeBtnText(){
             this.buttonText = '上传';
+        },
+        changeHasInput(){
+            this.hasInput = !this.hasInput;
         }
     }
 });

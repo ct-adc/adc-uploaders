@@ -1,6 +1,6 @@
 # 导入文件组件
 
-## [在线demo](https://codepen.io/rubyisapm/pen/WjYVPp)
+## [在线demo](https://codepen.io/rubyisapm/pen/WjYVPp){:target="_blank"}
 
 ## 使用
 
@@ -27,6 +27,7 @@ chunked | 是否分片上传文件 | Boolean | true
 disabled | 按钮是否可用 | Boolean | true
 tip | disabled为false时生效。当tip为''时不显示tip框 | String | ''
 direction | tip的方向 | String | 'left'/'right'/'top'/'bottom'
+hasInput | 是否需要input框 | Boolean | false
 
 ### accept
 
