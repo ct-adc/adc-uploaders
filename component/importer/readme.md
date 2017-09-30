@@ -20,7 +20,7 @@ Vue.component(Importer.name,Importer);
 new Vue({
     ...
     components:{
-        Impoter
+        Importer
     },
     ...
 })
