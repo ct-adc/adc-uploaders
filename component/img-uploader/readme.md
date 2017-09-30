@@ -12,7 +12,20 @@ npm install ct-adc-uploaders
 ```
 import uploaders from 'ct-adc-uploaders';
 var ImgUploader=uploaders.ImgUploader;
+
+//全局注册
 Vue.component(ImgUploader.name,ImgUploader);
+
+//局部注册
+
+new Vue({
+    ...
+    components:{
+        ImgUploader
+    },
+    ...
+})
+
 ```
 ## 参数说明
 

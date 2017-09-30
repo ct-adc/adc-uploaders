@@ -2,8 +2,6 @@
 
 ## [在线demo](https://codepen.io/rubyisapm/pen/WjYVPp)
 
-<a href="https://codepen.io/rubyisapm/pen/WjYVPp" target="_blank">在线demo2</a>
-
 ## 使用
 
 从npm安装`ct-adc-uploaders`
@@ -14,7 +12,18 @@ npm install ct-adc-uploaders
 ```
 import uploaders from 'ct-adc-uploaders';
 var Importer=uploaders.Importer;
+//全局注册
 Vue.component(Importer.name,Importer);
+
+//局部注册
+
+new Vue({
+    ...
+    components:{
+        Impoter
+    },
+    ...
+})
 ```
 ## 参数说明
 
