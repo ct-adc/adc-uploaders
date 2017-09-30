@@ -310,11 +310,11 @@
         margin-right: 5px;
     }
 
-    .input-group-addon{
+    .ct-adc-importer .input-group-addon{
         padding:0;
         border:none;
     }
-    .input-group-addon .webuploader-pick{
+    .ct-adc-importer .input-group-addon .webuploader-pick{
         border-radius: 0 3px 3px 0;
     }
 </style>
