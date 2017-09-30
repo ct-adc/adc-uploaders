@@ -2,7 +2,7 @@
 
 ## [在线demo](https://codepen.io/rubyisapm/pen/WjYVPp)
 
-<a href="https://codepen.io/rubyisapm/pen/WjYVPp" target="_blank">在线demo</a>
+<a href="https://codepen.io/rubyisapm/pen/WjYVPp" target="_blank">在线demo2</a>
 
 ## 使用
 
