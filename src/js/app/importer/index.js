@@ -21,7 +21,7 @@ new Vue({
         tip: '错误提示',
         direction: 'bottom',
         buttonText: '上传文件',
-        hasInput: false
+        hasInput: true
     },
     components: {
         importer: uploaders.Importer

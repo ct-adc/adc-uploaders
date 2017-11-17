@@ -1,9 +1,9 @@
 <template>
-    <div :class="{'input-group':hasInput}">
+    <div :class="{'input-group':hasInput}" class="ct-adc-importer">
         <input v-if="hasInput" type="text" class="form-control input-sm" :placeholder="inputPlaceholder" :value="fileName">
         <div :class="{'input-group-addon':hasInput}">
             <span ref="root"
-                  class="webuploader-container ct-adc-importer"
+                  class="webuploader-container"
                   :class="disabled ? 'disabledWrap' : ''"
                   :data-placement="direction"
                   :data-original-title="tip">
@@ -13,16 +13,6 @@
             </span>
         </div>
     </div>
-    <!--<span v-else-->
-          <!--ref="root"-->
-          <!--class="webuploader-container ct-adc-importer"-->
-          <!--:class="disabled ? 'disabledWrap' : ''"-->
-          <!--:data-placement="direction"-->
-          <!--:data-original-title="tip">-->
-        <!--&lt;!&ndash;webuploader-container是后续上传插件往外层元素span上加入的类名，这里直接绑定到class上是为了避免后续dom渲染时保持span有该类&ndash;&gt;-->
-        <!--<i class="glyphicon glyphicon-import"></i>-->
-        <!--<span class="title">{{ buttonText }}</span>-->
-    <!--</span>-->
 </template>
 
 <script type="text/ecmascript-6">
