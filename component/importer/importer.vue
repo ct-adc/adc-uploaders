@@ -4,7 +4,7 @@
         <div :class="{'input-group-addon':hasInput}">
             <span ref="root"
                   class="webuploader-container"
-                  :class="disabled ? 'disabledWrap' : ''"
+                  :class="disabled || loading ? 'disabledWrap' : ''"
                   :data-placement="direction"
                   :data-original-title="tip">
                 <!--webuploader-container是后续上传插件往外层元素span上加入的类名，这里直接绑定到class上是为了避免后续dom渲染时保持span有该类-->
@@ -216,8 +216,10 @@
                 var $webuploaderPick = this.$refs.root.querySelector('.webuploader-pick');
                 if (isLoading) {
                     $webuploaderPick.innerHTML = '<i class="glyphicon glyphicon-refresh rotate"></i><span class="title">' + '上传中...' + '</span>';
+                    $webuploaderPick.nextSibling.style.display = 'none';
                 } else {
                     $webuploaderPick.innerHTML = '<i class="glyphicon glyphicon-import"></i><span class="title">' + this.buttonText + '</span>';
+                    $webuploaderPick.nextSibling.style.display = 'block';
                 }
             },
             server: function(server) {
