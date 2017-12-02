@@ -67,6 +67,16 @@
                 type: Boolean,
                 default: true
             },
+            sendAsBinary: {
+                type: Boolean,
+                default: true
+            },
+            headers: {
+                type: Object,
+                default(){
+                    return {};
+                }
+            },
             disabled: {
                 type: Boolean,
                 default: false
@@ -91,8 +101,10 @@
             this.initTip();
             if (this.disabled) {
                 this.disableUploader();
+                this.enableTip();
             } else {
                 this.enableUploader();
+                this.disableTip();
             }
             this.refresh();
         },
@@ -112,6 +124,7 @@
                 });
                 that.uploader.on('uploadBeforeSend', function(object, data, headers) {
                     utility.base.extend(data, that.formData);
+                    utility.base.extend(headers, that.headers);
                 })
                 that.uploader.on('uploadStart', function() {
                     that.$emit('start');
@@ -173,14 +186,12 @@
                 if (!classes.contains('webuploader-pick-disable')) {
                     this.$refs.root.querySelector('.webuploader-pick').classList.add('webuploader-pick-disable');
                 }
-                this.enableTip();
             },
             enableUploader(){
                 var classes = this.$refs.root.querySelector('.webuploader-pick').classList;
                 if (classes.contains('webuploader-pick-disable')) {
                     this.$refs.root.querySelector('.webuploader-pick').classList.remove('webuploader-pick-disable');
                 }
-                this.disableTip();
             }
         },
         watch: {
@@ -194,6 +205,9 @@
             },
             chunked(newVal){
                 this.uploader.option('chunked', newVal);
+            },
+            sendAsBinary(newVal){
+                this.uploader.option('sendAsBinary', newVal);
             },
             buttonText(newVal){
                 var $webuploaderPick = this.$refs.root.querySelector('.webuploader-pick');
@@ -215,9 +229,11 @@
             loading(isLoading) {
                 var $webuploaderPick = this.$refs.root.querySelector('.webuploader-pick');
                 if (isLoading) {
+                    this.disableUploader();
                     $webuploaderPick.innerHTML = '<i class="glyphicon glyphicon-refresh rotate"></i><span class="title">' + '上传中...' + '</span>';
                     $webuploaderPick.nextSibling.style.display = 'none';
                 } else {
+                    this.enableUploader();
                     $webuploaderPick.innerHTML = '<i class="glyphicon glyphicon-import"></i><span class="title">' + this.buttonText + '</span>';
                     $webuploaderPick.nextSibling.style.display = 'block';
                 }
@@ -228,8 +244,10 @@
             disabled(newVal){
                 if (newVal) {
                     this.disableUploader();
+                    this.enableTip();
                 } else {
                     this.enableUploader();
+                    this.disableTip();
                 }
             },
             tip(newVal){

@@ -39,6 +39,7 @@ disabled | 按钮是否可用 | Boolean | true
 tip | disabled为false时生效。当tip为''时不显示tip框 | String | ''
 direction | tip的方向 | String | 'left'/'right'/'top'/'bottom'
 hasInput | 是否需要input框 | Boolean | false
+headers | 自己需要配置的请求头 | Object | {}
 
 ### accept
 
